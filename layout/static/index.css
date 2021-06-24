@@ -1,0 +1,109 @@
+#hero {
+  height: 65%;
+  color: #fff;
+  margin: 0;
+  position: relative;
+}
+
+#hero-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("imgs/hero_2019_farewell.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  filter: blur(0.5px);
+}
+
+#hero-text {
+  text-align: center;
+  font-size: x-large;
+  position: absolute;
+  user-select: none;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#hero-text h1 {
+  margin-top: 0;
+}
+
+#hero svg {
+  position: absolute;
+  bottom: -1%;
+}
+
+#boxes {
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.box {
+  position: relative;
+  text-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 5%;
+
+  max-width: 30em;
+  width: 23%;
+  min-width: 200px;
+
+  height: 13em;
+  z-index: 2;
+
+  border-radius: 28px;
+  background: #fffff0;
+  box-shadow: 26px 26px 21px rgba(255, 225, 203, 0.3);
+
+  transition: background-color 0.2s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  transition: transform 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.box h3 {
+  color: #000;
+  margin: 0;
+  font-size: 1.5em;
+  text-align: center;
+  top: 30%;
+  width: 100%;
+  position: absolute;
+  user-select: none;
+}
+
+.box svg {
+  position: relative;
+  top: 60%;
+}
+
+.box path {
+  transition: transform 0.35s ease-in-out;
+}
+
+.box:hover path {
+  transition: transform 0.35s ease-in-out;
+  transform: translateX(10%);
+}
+
+.box:hover {
+  cursor: pointer;
+  transition: background-color 0.25s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  background-color: #fff9e3;
+
+  transition: transform 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transform: translateY(-3%);
+}
+
+.box:active {
+  cursor: grab;
+  transition: background-color 0.1s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  background-color: #ffeed6;
+
+  transition: transform 0.1s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transform: translate(2%, 2%);
+}

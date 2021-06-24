@@ -1,0 +1,162 @@
+html,
+body {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  color: #222;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  font-family: "Times New Roman", Times, serif;
+}
+
+/*
+ * HEADER 
+*/
+
+header {
+  width: 100%;
+  border-bottom: #111 solid 1px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+header a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+header #logo {
+  margin: 5px 5px 5px 5px;
+  width: 4rem;
+}
+
+header #logotext {
+  font-size: 1.5em;
+  color: #000;
+}
+
+header .header-left-buttons {
+  margin-left: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+header .header-left-buttons a {
+  border: none;
+  color: #000;
+  background-color: #fff;
+  height: 3rem;
+  font-size: 1.25em;
+  margin-right: 16px;
+  transition: color 0.25s linear;
+}
+
+header .header-left-buttons a:hover {
+  cursor: pointer;
+  color: #52534f;
+  transition: color 0.25s linear;
+}
+
+header .header-right {
+  margin-left: auto;
+  margin-right: 5px;
+}
+
+/*
+ * CONTENT
+*/
+
+#content {
+  margin: 40px auto 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#toc #toc-title {
+  color: #5b6987;
+  user-select: none;
+  border-bottom: 1px solid #5b6987;
+  padding-bottom: 3px;
+}
+
+#toc ul {
+  margin-top: 0;
+  padding-left: 0;
+}
+
+#toc ul li {
+  padding-top: 16px;
+  width: auto;
+  list-style: none;
+}
+
+#toc ul li a {
+  color: black;
+  text-decoration: none;
+}
+
+#main {
+  margin-left: 3%;
+  width: 745px;
+  margin-right: 5%;
+  max-width: 75%;
+  background-color: #fff;
+  border: 1px solid #fff;
+  border-radius: 25px;
+}
+
+#inner {
+  margin-left: 25px;
+}
+
+#main h1 {
+  font-size: 30px;
+  margin-top: 0;
+}
+
+#main a {
+  color: #0094ff;
+}
+
+#main a:visited {
+  color: #005fa4;
+}
+
+@media (max-width: 800px) and (min-width: 0) {
+  #main h1 {
+    font-size: 24px;
+  }
+
+  #toc {
+    text-align: center;
+  }
+
+  #main {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  #content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #inner {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 520px) and (min-width: 0) {
+  header #logotext {
+    display: none;
+  }
+}
