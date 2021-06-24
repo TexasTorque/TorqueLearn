@@ -131,6 +131,10 @@ header .header-right {
   color: #005fa4;
 }
 
+pre {
+  white-space: inherit;
+}
+
 @media (max-width: 800px) and (min-width: 0) {
   #main h1 {
     font-size: 24px;
