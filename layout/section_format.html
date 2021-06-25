@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TorqueLearn - {PAGE_NAME}</title>
   <link rel="stylesheet" href="/static/main.css"/>
+  <link rel="stylesheet" href="/static/section.css"/>
 </head>
 <body>
   <header>  
@@ -13,7 +14,7 @@
       <span id="logotext">TorqueLearn</span>
     </a>
     <div class="header-left-buttons">
-      <a href="/tutorials">
+      <a href="/Tutorials">
           Tutorials
       </a>
       <a href="/about">
@@ -28,7 +29,11 @@
   </header>
   
   <div id="content">
-    {CONTENT}
+    <h1>{TITLE}</h1>
+    <br/>
+    <div id="boxes">
+      {CONTENT}
+    </div>
   </div>
 </body>
 </html>

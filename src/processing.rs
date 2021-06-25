@@ -3,12 +3,12 @@ use std::{ffi::OsString, fs::{self, File, copy, create_dir_all}, io::Write, path
 use copy_dir::copy_dir;
 use glob::glob;
 use markdown::file_to_html;
-use walkdir::{WalkDir};
+use walkdir::WalkDir;
 
 const FORMAT_HTML: &'static str = include_str!("../layout/format.html");
 const SECTION_FORMAT_HTML : &'static str = include_str!("../layout/section_format.html");
-const TOP_DIR_ENTRY: &'static str = "<div class=\"section\">";
-const BOTTOM_DIR_ENTRY: &'static str = "</div>";
+const TOP_DIR_ENTRY: &'static str = "<a href=\"{URL}\"class=\"section\">";
+const BOTTOM_DIR_ENTRY: &'static str = "</a>";
 
 pub fn process() {
     println!("Processing files...");
@@ -47,27 +47,32 @@ pub fn process() {
             Err(e) => println!("{:?}", e),
         }
     }
-    WalkDir::new("deploy/tutorials")
+    WalkDir::new("deploy/Tutorials")
         .into_iter()
         .filter_entry(|dir| dir.metadata().expect("Failed to read file metadata").is_dir() && !Path::new(&([dir.path().to_str().expect("Failed path->str"), "/index.html"].join(""))).exists())
         .for_each(|x|{
             match x {
                 Ok(dir) => {
                     let mut ret : String = String::new();
+                    let p : &str = dir.path().to_str().expect("Failed path->str").trim_start_matches("deploy");
+                    
                     for path in fs::read_dir(dir.path()).unwrap()  {
+                        let n = path.unwrap().file_name();
+                        let name = n.to_str().expect("Failed OSString->str");
                         ret.push_str(TOP_DIR_ENTRY);
-                        ret.push_str(path.unwrap().file_name().to_str().expect("Failed OSString->str"));
+                        ret.push_str(name);
+                        ret = ret.replace("{URL}", &[p, name].join("/")); 
                         ret.push_str(BOTTOM_DIR_ENTRY);
                     }
-
 
                     let mut output = SECTION_FORMAT_HTML.clone().to_string();
                     output = output.replace("{CONTENT}", &ret);
                     output = output.replace("{PAGE_NAME}", dir.file_name().to_str().expect("Failed getting file name"));
+                    output = output.replace("{TITLE}", dir.file_name().to_str().expect("Failed getting file name"));
                     
                     let mut file = File::create([dir.path().to_str().expect("Failed path->str"), "/index.html"].join("")).expect("Failed opening file to save");
                     file.write_all(output.as_bytes()).expect("Failed to write to file :(!");
-                    println!("{:?}", dir.file_name()); 
+                    println!("{:?}", dir.path().to_str().expect("Failed path->str").trim_start_matches("deploy"));
                 }
                 Err(e) => println!("Failed walking directory! {:?}", e),
             }
@@ -88,7 +93,7 @@ fn handle_md(path: PathBuf) {
 
     file_name = file_name.trim_end_matches(".md").to_string();
     file_name.push_str(".html");
-    file_name = ["deploy/tutorials/", &file_name].join("");
+    file_name = ["deploy/Tutorials/", &file_name].join("");
    
     // get directory name and do
     let directories = file_name.trim_end_matches(".html");

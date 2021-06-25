@@ -4,11 +4,6 @@
 mod processing;
 use rocket::fs::{FileServer, relative};
 
-#[get("/*")]
-fn index() -> &'static str {
-    "Hello, world!"
-}
-
 #[launch]
 fn rocket() -> _ {
     processing::process();
