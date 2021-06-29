@@ -1260,6 +1260,7 @@ dependencies = [
  "copy_dir",
  "glob",
  "markdown",
+ "regex",
  "rocket",
  "walkdir 2.3.2",
 ]
