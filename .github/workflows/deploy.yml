@@ -1,0 +1,20 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build the server
+        run: cargo build --release
+      
+      - name: Restart server
+        run: systemctl restart torquelearn
