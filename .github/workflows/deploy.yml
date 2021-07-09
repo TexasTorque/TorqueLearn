@@ -17,4 +17,4 @@ jobs:
         run: cargo build --release
       
       - name: Restart server
-        run: systemctl restart torquelearn
+        run: sudo systemctl restart torquelearn
