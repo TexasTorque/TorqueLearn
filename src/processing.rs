@@ -21,12 +21,13 @@ const TOC_LIST_END: &'static str = "</a></li>";
 
 pub fn process() {
     println!("Processing files...");
+    
     // Remove deploy directory
-    fs::remove_dir_all("deploy/").expect("Failed to remove deploy directory!");
+    fs::remove_dir_all("deploy/");
     
     // Create deploy directory
     fs::create_dir("deploy/").expect("Failed to create a new deploy directory!");
-
+    
     // Copy non-page files
     for entry in glob("layout/*.html").expect("Failed to read glob pattern!") {
         match entry {
