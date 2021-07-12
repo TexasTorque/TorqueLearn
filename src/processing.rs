@@ -16,7 +16,6 @@ const DOCUMENT_SVG_SECTION: &'static str = "<svg xmlns=\"http://www.w3.org/2000/
 const BOTTOM_DIR_ENTRY: &'static str = "</a>";
 
 const TOC_LIST_START: &'static str = "<li><a href=\'#";
-const TOC_LIST_MIDDLE: &'static str = "\'";
 const TOC_LIST_END: &'static str = "</a></li>";
 
 pub fn process() {
