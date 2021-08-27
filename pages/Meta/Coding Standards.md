@@ -3,6 +3,8 @@
 ## Important Advice
 
 - Simple > Complicated
+- Explicit > Implicit
+- Comments don't explain your code to humans, code explains your comments to the computer
 - The best procedure is no procedure
 - Only use Object Oritentation when necessary
 - It's not what you know, it's what you do with what you know

@@ -15,7 +15,8 @@ const FOLDER_SVG_SECTION: &'static str = "<svg xmlns=\"http://www.w3.org/2000/sv
 const DOCUMENT_SVG_SECTION: &'static str = "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\" class=\"svgicon\" x=\"0px\" y=\"0px\" viewBox=\"0 0 293.151 293.151\" style=\"enable-background:new 0 0 293.151 293.151;\" xml:space=\"preserve\"><path d=\"M255.316,55.996l-51.928-52.94C201.471,1.102,198.842,0,196.104,0h-82.302h-8.232H45.113    c-5.631,0-10.197,4.566-10.197,10.192c0,5.626,4.566,10.192,10.197,10.192h60.457h8.232h72.11l0.005,44.231    c0,5.631,4.561,10.197,10.192,10.197h41.731v197.955H56.592V47.828c0-5.631-4.566-10.197-10.197-10.197    c-5.631,0-10.192,4.566-10.192,10.197v235.131c0,5.631,4.566,10.192,10.192,10.192h201.642c5.631,0,10.197-4.566,10.197-10.192    V63.137C258.229,60.467,257.185,57.903,255.316,55.996z M206.307,54.423V35.147l18.906,19.276H206.307z\"/>";
 const BOTTOM_DIR_ENTRY: &'static str = "</a>";
 
-const TOC_LIST_START: &'static str = "<li><a href=\'#";
+const TOC_LIST_START: &'static str = "<li><a class=\"\" href=\"/Tutorials/";
+const TOC_LIST_MID: &'static str = "\">";
 const TOC_LIST_END: &'static str = "</a></li>";
 
 pub fn process() {
@@ -49,10 +50,14 @@ pub fn process() {
     // Bring over static folder
     copy_dir("layout/static/", "deploy/static").expect("Failed copying static!");
 
+    let featured_file : String = fs::read_to_string("pages/Featured.csv")
+        .expect("Something went wrong reading the file");
+    let featured : Vec<&str> = featured_file.split(",").collect();
+
     // Read all MDs
     for entry in glob("pages/**/*.md").expect("Failed to read glob pattern!") {
         match entry {
-            Ok(path) => handle_md(path),
+            Ok(path) => handle_md(path, featured.clone()),
             Err(e) => println!("{:?}", e),
         }
     }
@@ -100,7 +105,7 @@ pub fn process() {
     println!("Deploy directory successfully created!");
 }
 
-fn handle_md(path: PathBuf) {
+fn handle_md(path: PathBuf, featured: Vec<&str>) {
     let html : String = file_to_html(&path).expect("failed to read MD!");
     let file_name : OsString = path.file_name().expect("Failed to read file name!").to_owned();
 
@@ -111,17 +116,25 @@ fn handle_md(path: PathBuf) {
     let re = Regex::new(r"<h.*</h.>").expect("Failed generating regex");
     let re_id = Regex::new("\'.+\'").expect("Failed generating regex");
     let re_name = Regex::new(">.+<").expect("Failed generating regex");
-    /*
+    
     let mut toc : String = String::new(); 
-    for cap in re.captures_iter(html.as_str()) {
+    /*for cap in re.captures_iter(html.as_str()) {
         toc.push_str(TOC_LIST_START);
         //toc.push_str(&re_id.find(cap.index(0)).expect("Failed finding TOC id").as_str().replacen("'", "", 1));
         //toc.push_str(&re_name.find(cap.index(0)).expect("Failed finding TOC name").as_str().trim_end_matches("<"));
+        toc.push_str(&cap.get(0).unwrap().as_str());
+        toc.push_str(TOC_LIST_END);
+    }*/
+    for feature in featured {
+        toc.push_str(TOC_LIST_START);
+        toc.push_str(feature);
+        toc.push_str(TOC_LIST_MID);
+        toc.push_str(feature);
         toc.push_str(TOC_LIST_END);
     }
-    println!("{:?}", &toc);
+
     output = output.replace("{TOC}", &toc);
-    */
+    
 
     let mut file_name: String = path.to_str().expect("Failed converting Path").split("pages/").last().expect("Invalid path directory, missing pages!").to_string();
 
