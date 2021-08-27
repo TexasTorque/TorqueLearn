@@ -12,5 +12,8 @@ Here you can edit the code like you would on your own machine, including making 
 
 To push changes, you need to create a pull request on Github. Normally this is a bit of a complicated process, but Github's editor makes it really easy!
 
-First hit the "Source Control" button on the left. Then you can [create a commit like usual](Tutorials/Git%20Use/How%20to%20Use%20VSCode%20Git). Next, click on the pull request button.
+First hit the "Source Control" button on the left. You will want to create a new branch using a fork. Then you can [create a commit like usual](Tutorials/Git%20Use/How%20to%20Use%20VSCode%20Git). Next, click on the pull request button. You will be able to add the commit to the pull request against the master the branch. 
 
+This pull request will let us review your changes before implementing. 
+
+Feel free to ask if you have any questions!
