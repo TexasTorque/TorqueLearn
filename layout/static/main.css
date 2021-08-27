@@ -44,7 +44,7 @@ button {
 
 header {
   width: 100%;
-  border-bottom: #111 solid 1px;
+  /*border-bottom: #111 solid 1px;*/
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -57,13 +57,14 @@ header a {
 }
 
 header #logo {
-  margin: 5px 5px 5px 5px;
+  margin: 10px 10px 10px 30px;
   width: 4rem;
 }
 
 header #logotext {
   font-size: 1.5em;
   color: #000;
+  margin-right: 20px;
 }
 
 header .header-left-buttons {
