@@ -7,10 +7,21 @@ on:
   workflow_dispatch:
 
 jobs:
+
   deploy:
     runs-on: self-hosted
 
     steps:
+      - uses: actions/cache@v2
+      with:
+        path: |
+          ~/.cargo/bin/
+          ~/.cargo/registry/index/
+          ~/.cargo/registry/cache/
+          ~/.cargo/git/db/
+          target/
+        key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
       - uses: actions/checkout@v2
 
       - name: Build the server
