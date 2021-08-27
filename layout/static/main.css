@@ -1,7 +1,30 @@
+
+@font-face {
+  font-family: "SFPro";
+  src: url('/static/fonts/SFPro/SF-Pro-Text-Regular.otf');
+}
+@font-face {
+  font-family: "SFCompact";
+  src: url('/static/fonts/SFCompact/SF-Compact.ttf');
+}
+@font-face {
+  font-family: "NY";
+  src: url('/static/fonts/NewYork/NewYork.ttf');
+}
+@font-face {
+  font-family: "SFMono";
+  src: url('/static/fonts/SFMono/SF-Mono.ttf');
+}
+
 html,
 body {
   scroll-behavior: smooth;
   height: 100%;
+  font-family: "SFPro", Arial, Helvetica, sans-serif;
+}
+
+code {
+	font-family: "SFMono", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 }
 
 body {

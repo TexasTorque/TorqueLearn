@@ -6,6 +6,7 @@
   <title>TorqueLearn - {PAGE_NAME}</title>
   <link rel="stylesheet" href="/static/main.css"/>
   <link rel="stylesheet" href="/static/tutorial.css"/>
+  <link rel="stylesheet" href="/static/prism/light.css"/>
 </head>
 <body>
   <header>  
@@ -20,6 +21,9 @@
       <a href="https://github.com/TexasTorque/TorqueLearn">
           About
       </a>
+      <a href="..">
+          <em>Back ...</em>
+      </a>
     </div>
     <div class="header-right">
       <div>
@@ -28,12 +32,12 @@
   </header>
   
   <div id="content">
-    <div id="toc">
+    <!--<div id="toc">
       <span id="toc-title">CONTENTS</span>
       <ul>
         {TOC}
       </ul>
-    </div>
+    </div>-->
     <div id="main">
       <div id="inner">
       {CONTENT}
@@ -41,4 +45,5 @@
     </div>
   </div>
 </body>
+  <script src="/static/prism/prism.js"></script>
 </html>

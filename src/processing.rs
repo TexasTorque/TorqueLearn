@@ -64,9 +64,11 @@ pub fn process() {
                 Ok(dir) => {
                     let mut ret : String = String::new();
                     let p : &str = dir.path().to_str().expect("Failed path->str").trim_start_matches("deploy");
-                    
-                    for path in fs::read_dir(dir.path()).unwrap()  {
-                        let path = path.unwrap();
+
+                    let mut paths: Vec<_> = fs::read_dir(dir.path()).unwrap().map(|r| r.unwrap()).collect(); 
+                    paths.sort_by_key(|dir| dir.path()); // alphabetical order?
+                    for path in paths {
+                        //let path = path.unwrap();
                         let n = path.file_name();
                         let name = n.to_str().expect("Failed OSString->str");
                         ret.push_str(TOP_DIR_ENTRY);
@@ -109,15 +111,17 @@ fn handle_md(path: PathBuf) {
     let re = Regex::new(r"<h.*</h.>").expect("Failed generating regex");
     let re_id = Regex::new("\'.+\'").expect("Failed generating regex");
     let re_name = Regex::new(">.+<").expect("Failed generating regex");
+    /*
     let mut toc : String = String::new(); 
     for cap in re.captures_iter(html.as_str()) {
         toc.push_str(TOC_LIST_START);
-        toc.push_str(&re_id.find(cap.index(0)).expect("Failed finding TOC id").as_str().replacen("'", "", 1));
-        toc.push_str(&re_name.find(cap.index(0)).expect("Failed finding TOC name").as_str().trim_end_matches("<"));
+        //toc.push_str(&re_id.find(cap.index(0)).expect("Failed finding TOC id").as_str().replacen("'", "", 1));
+        //toc.push_str(&re_name.find(cap.index(0)).expect("Failed finding TOC name").as_str().trim_end_matches("<"));
         toc.push_str(TOC_LIST_END);
     }
     println!("{:?}", &toc);
     output = output.replace("{TOC}", &toc);
+    */
 
     let mut file_name: String = path.to_str().expect("Failed converting Path").split("pages/").last().expect("Invalid path directory, missing pages!").to_string();
 
