@@ -12,9 +12,17 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout the code
+        uses: actions/checkout@v2
       
-      - uses: Swatinem/rust-cache@v1
+      - name: Install latest nightly
+        uses: actions-rs/toolchain@v1
+        with:
+            toolchain: nightly
+            override: true
+
+      - name: Cache built rust dependencies
+        uses: Swatinem/rust-cache@v1
 
       - name: Build the server
         run: cargo build --release
