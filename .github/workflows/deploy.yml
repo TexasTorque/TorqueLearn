@@ -12,17 +12,17 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - uses: actions/cache@v2
+      - name: Checkout the code
+        uses: actions/checkout@v2
+      
+      - name: Install latest nightly
+        uses: actions-rs/toolchain@v1
         with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            target/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+            toolchain: nightly
+            override: true
 
-      - uses: actions/checkout@v2
+      - name: Cache built rust dependencies
+        uses: Swatinem/rust-cache@v1
 
       - name: Build the server
         run: cargo build --release
