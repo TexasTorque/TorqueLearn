@@ -16,7 +16,6 @@
   src: url('/static/fonts/SFMono/SF-Mono.ttf');
 }
 
-
 html,
 body {
   scroll-behavior: smooth;
@@ -26,16 +25,11 @@ body {
 
 code {
 	font-family: "SFMono", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-  color: var(--main-text);
-}
-
-#hero {
-  color: #F9F6EF;
 }
 
 body {
-  color: var(--main-text);
-  background-color: var(--background);
+  color: #222;
+  background-color: #fff;
   margin: 0;
   padding: 0;
 }
@@ -51,7 +45,7 @@ button {
 header {
   width: 100%;
   /*border-bottom: #111 solid 1px;*/
-  background-color: var(--header-background);
+  background-color: #fff;
   display: flex;
   align-items: center;
 }
@@ -69,7 +63,7 @@ header #logo {
 
 header #logotext {
   font-size: 1.5em;
-  color: var(--header-foreground);
+  color: #000;
   margin-right: 20px;
 }
 
@@ -81,8 +75,8 @@ header .header-left-buttons {
 
 header .header-left-buttons a {
   border: none;
-  color: var(--header-foreground);
-  background-color: var(--header-button-background);
+  color: #000;
+  background-color: #fff;
   height: 3rem;
   font-size: 1.25em;
   margin-right: 16px;
@@ -91,7 +85,7 @@ header .header-left-buttons a {
 
 header .header-left-buttons a:hover {
   cursor: pointer;
-  color: var(--header-button-hover);
+  color: #52534f;
   transition: color 0.25s linear;
 }
 
@@ -99,14 +93,3 @@ header .header-right {
   margin-left: auto;
   margin-right: 5px;
 }
-
-.logo-svg {
-  margin: 10px 10px 15px 30px;
-  width: 4rem;
-  height: 4rem;
-}
-
-.logo-svg-path {
-  fill: var(--torque-logo);
-}
-
