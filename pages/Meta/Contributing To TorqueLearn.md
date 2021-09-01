@@ -17,3 +17,7 @@ First hit the "Source Control" button on the left. You will want to create a new
 This pull request will let us review your changes before implementing. 
 
 Feel free to ask if you have any questions!
+
+## Credits
+
+Initially written by [Jack Pittenger](https://github.com/realSaddy) in August 2021

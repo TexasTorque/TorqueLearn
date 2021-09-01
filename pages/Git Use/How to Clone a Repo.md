@@ -39,3 +39,7 @@ When the option becomes available, in the bottom right, select OPEN.
 If you have done everything correctly, your source control tab should look like this:
 
 ![source control repo](/static/imgs/correctsourcecontrol.png)
+
+## Credits
+
+Initially written by [Justus Languell](https://github.com/Juicestus) in August 2021
