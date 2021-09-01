@@ -1,8 +1,8 @@
 Getting Started,
-Meta/Contributing To TorqueLearn,
-Meta/Coding Standards,
 Setup/How to Install WPILib,
 Setup/How to Setup VSCode,
-Setup/How to Install FRC Gametools,
+Git Use/Introductory Git,
 Git Use/How to Clone a Repo,
-Git Use/How to Use VSCode Git
+Git Use/How to Use VSCode Git,
+Coding/Coding Standards,
+Meta/Contributing To TorqueLearn

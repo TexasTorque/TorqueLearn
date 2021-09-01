@@ -81,3 +81,7 @@ int thisIsAFunction(int a) {
     return -a;
 }
 ```
+
+## Credits
+
+Initially written by [Justus Languell](https://github.com/Juicestus) in August 2021

@@ -18,5 +18,6 @@ FRC Gametools allow you to communicate and interact with your robot. FRC Gametoo
 
 8. You are now free to control your robot. If you would like to pause or stop controlling the robot, just click the Disable button on your Driver Station Window.
 
+## Credits
 
-Written by [Suhas Guddeti](https://github.com/Suhas44)
+Initially written by [Suhas Guddeti](https://github.com/Suhas44) in August 2021

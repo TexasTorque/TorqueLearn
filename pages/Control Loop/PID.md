@@ -17,3 +17,7 @@ For example, let's say we have an error value of 10. If we have a proportional v
 ### Integral
 
 The Integral part of the PID controller increases the force applied as time passes without reaching zero error.
+
+## Credits
+
+Initially written by [Jack Pittenger](https://github.com/realSaddy) in July 2021
