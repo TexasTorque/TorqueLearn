@@ -18,7 +18,11 @@ if (controller.getLeftTrigger()) {
 }
 ```
 
-The above code checks if we are pressing the left trigger on the controller. If we are, we are telling the robot to start the shooting sequence. Most of the input methods are structured like this, though not exactly.
+The above code checks if we are pressing the left trigger on the controller. If we are, we are telling the robot to start the shooting sequence. Most of the input methods are structured like this, though not exactly. This block of code is called by the update() method. In general, this is how update() works:
+
+``` update() (called 100 times per second) --> checks for controller input --> if input is being entered from the controller, the corresponding methods will control their respective motors.
+``` 
+
 
 ## Credits
 
