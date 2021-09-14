@@ -1,3 +1,4 @@
+
 #hero {
   height: 65%;
   color: #fff;
@@ -58,15 +59,15 @@
   z-index: 2;
 
   border-radius: 28px;
-  background: #fffff0;
-  box-shadow: 26px 26px 21px rgba(255, 225, 203, 0.3);
+  background: var(--box-background);
+  box-shadow: var(--box-shadow);
 
   transition: background-color 0.2s cubic-bezier(0.895, 0.03, 0.685, 0.22);
   transition: transform 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .box h3 {
-  color: #000;
+  color: var(--main-text);
   margin: 0;
   font-size: 1.5em;
   text-align: center;
@@ -93,7 +94,7 @@
 .box:hover {
   cursor: pointer;
   transition: background-color 0.25s cubic-bezier(0.895, 0.03, 0.685, 0.22);
-  background-color: #fff9e3;
+  background-color: var(--box-hover);
 
   transition: transform 0.75s cubic-bezier(0.215, 0.61, 0.355, 1);
   transform: translateY(-3%);
@@ -102,8 +103,24 @@
 .box:active {
   cursor: grab;
   transition: background-color 0.1s cubic-bezier(0.895, 0.03, 0.685, 0.22);
-  background-color: #ffeed6;
+  background-color: var(--box-active);
 
   transition: transform 0.1s cubic-bezier(0.215, 0.61, 0.355, 1);
   transform: translate(2%, 2%);
+}
+
+.blobby {
+  fill: var(--background);
+}
+
+.box-svg {
+  stroke-width:3;
+  stroke: var(--main-text);
+  fill: none;
+}
+
+.arrow-svg {
+  stroke-width:1;
+  stroke: var(--main-text);
+  fill: var(--main-text);
 }
