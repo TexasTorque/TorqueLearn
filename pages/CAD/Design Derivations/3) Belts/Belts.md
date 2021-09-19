@@ -1,13 +1,17 @@
-# Title
+# Belts
 
 ## Intro
 
 hook/description
 
 
-## Concept
+## Concepts
 
 equations/derivation/explanation
+
+### Slipping
+
+### Power Transfer
 
 
 ## Credits

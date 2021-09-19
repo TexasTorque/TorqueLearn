@@ -1,13 +1,15 @@
-# Title
+# Flywheels
 
 ## Intro
 
 hook/description
 
 
-## Concept
+## Concepts
 
 equations/derivation/explanation
+
+### Exit Velocity
 
 
 ## Credits

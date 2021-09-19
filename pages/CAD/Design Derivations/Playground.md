@@ -7,10 +7,14 @@ hook/description
 
 ## Concept
 
+![source control repo](/static/imgs/correctsourcecontrol.png)
+
 equations/derivation/explanation
 [click on this link](#credits)
 
-$$a^2+2ab+b^2$$
+$$a^2+b^2=c^2$$
+
+$$\pi\int_{0}^3f(x, y, y')dx$$
 
 
 ## Credits

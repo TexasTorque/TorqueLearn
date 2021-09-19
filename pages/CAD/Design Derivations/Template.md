@@ -5,7 +5,7 @@
 hook/description
 
 
-## Concept
+## Concepts
 
 equations/derivation/explanation
 

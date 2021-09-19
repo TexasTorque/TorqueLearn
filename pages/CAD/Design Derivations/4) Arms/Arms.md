@@ -1,13 +1,19 @@
-# Title
+# Arms
 
 ## Intro
 
 hook/description
 
 
-## Concept
+## Concepts
 
 equations/derivation/explanation
+
+### 4 bar
+
+### Virtual 4 bar
+
+### Weighted Virtual 4 bar
 
 
 ## Credits

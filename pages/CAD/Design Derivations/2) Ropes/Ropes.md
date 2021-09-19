@@ -1,13 +1,19 @@
-# Title
+# Ropes
 
 ## Intro
 
 hook/description
 
 
-## Concept
+## Concepts
 
 equations/derivation/explanation
+
+### Tension
+
+### Capstan Equation
+
+### Fleet Angle
 
 
 ## Credits
