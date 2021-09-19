@@ -7,7 +7,8 @@ In FRC, robots are often tasked with launching projectiles. Understanding how a 
 
 ## Concepts
 
-equations/derivation/explanation
+[Vacuum](#vacuum)\
+[Drag](#drag)
 
 ### Vacuum
 

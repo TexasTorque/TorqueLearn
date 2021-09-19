@@ -7,7 +7,8 @@ hook/description
 
 ## Concepts
 
-equations/derivation/explanation
+[Slipping](#slipping)\
+[Power Transfer](#power-transfer)
 
 ### Slipping
 

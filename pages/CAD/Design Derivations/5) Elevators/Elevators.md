@@ -7,7 +7,8 @@ hook/description
 
 ## Concepts
 
-equations/derivation/explanation
+[Relative Motion](#relative-motion)\
+[Torque](#torque)
 
 ### Relative Motion
 

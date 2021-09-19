@@ -7,7 +7,7 @@ hook/description
 
 ## Concepts
 
-equations/derivation/explanation
+[Exit Velocity](#exit-velocity)
 
 ### Exit Velocity
 

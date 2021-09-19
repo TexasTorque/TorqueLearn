@@ -7,6 +7,10 @@ s
 
 ## Concepts
 
+[Positioning](#positioning)\
+[Reductions](#reductions)\
+[Inertia](#inertia)
+
 ### Positioning
 
 **Relevance:** Gears that are positioned too close togehter can bind up and cause teeth to wear away faster.
