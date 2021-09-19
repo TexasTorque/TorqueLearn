@@ -1,3 +1,4 @@
+
 #content {
   margin: 40px auto 10px;
   display: flex;
@@ -6,15 +7,16 @@
 }
 
 #toc #toc-title {
-  color: #5b6987;
+  color: var(--toc-title);
   user-select: none;
-  border-bottom: 1px solid #5b6987;
+  border-bottom: 1px solid var(--toc-title);
   padding-bottom: 3px;
+  margin-left: 10px;
 }
 
 #toc ul {
   margin-top: 0;
-  padding-left: 0;
+  padding-left: 10px;
 }
 
 #toc ul li {
@@ -24,7 +26,17 @@
 }
 
 #toc ul li a {
-  color: black;
+  color: var(--toc-entry);
+  text-decoration: none;
+}
+
+#toc ul li a:hover {
+  color: var(--toc-entry-hover);
+  text-decoration: none;
+}
+
+#toc ul li a:visited {
+  color: var(--toc-entry-visited);
   text-decoration: none;
 }
 
@@ -33,13 +45,13 @@
   width: 745px;
   margin-right: 5%;
   max-width: 75%;
-  background-color: #fff;
-  border: 1px solid #fff;
+  background-color: var(--background);
+  border: 1px solid var(--background);
   border-radius: 25px;
 }
 
 #inner {
-  margin-left: 25px;
+  margin-left: 0px;
 }
 
 #main h1 {
@@ -72,13 +84,14 @@ img {
   max-height: 400px;
 }
 
-@media (max-width: 800px) and (min-width: 0) {
+@media (max-width: 1010px) and (min-width: 0) {
   #main h1 {
     font-size: 24px;
   }
 
   #toc {
     text-align: center;
+    display: none;
   }
 
   #main {
@@ -96,8 +109,3 @@ img {
   }
 }
 
-@media (max-width: 520px) and (min-width: 0) {
-  header #logotext {
-    display: none;
-  }
-}
