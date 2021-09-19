@@ -72,7 +72,8 @@ function setColors(setTo) {
 
 function swapColors() {
     let current = localStorage.getItem(NAME);
-    document.getElementById("toggle-color").innerHTML = current + " Mode";
+    //document.getElementById("toggle-color").innerHTML = current + " Mode";
+    document.getElementById("toggle-color").innerHTML = "<img class='tico' src='/static/" + (current == "Dark" ? "moon.png" : "sun.png") + "'>";
     let next = current == "Dark" ? "Light" : "Dark";
     setColors(next);
     localStorage.setItem(NAME, next);
@@ -80,4 +81,4 @@ function swapColors() {
 
 let current = localStorage.getItem(NAME);
 setColors(current);
-document.getElementById("toggle-color").innerHTML = (current == "Dark" ? "Light" : "Dark") + " Mode";
+document.getElementById("toggle-color").innerHTML = "<img class='tico' src='/static/" + (current == "Dark" ? "sun.png" : "moon.png") + "'>";

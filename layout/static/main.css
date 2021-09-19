@@ -126,21 +126,30 @@ header .header-right {
   fill: var(--torque-logo);
 }
 
+.tico {
+  height: 24px;
+  width: 24px;
+}
+
+#toggle-color {
+  margin-left: 30px;
+}
+
 /*  ?  */
 
-@media (max-width: 653px) and (min-width: 0) {
+@media (max-width: 553px) and (min-width: 0) {
   header #logotext {
     display: none;
   }
 }
 
-@media only screen and (max-width: 495px) and (min-width: 0) {
+@media only screen and (max-width: 395px) and (min-width: 0) {
   #about {
     display: none;
   }
 }
 
-@media only screen and (max-width: 420px) and (min-width: 0) {
+@media only screen and (max-width: 320px) and (min-width: 0) {
   a#tut {
     display: none;
   }
