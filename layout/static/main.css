@@ -137,19 +137,19 @@ header .header-right {
 
 /*  ?  */
 
-@media (max-width: 553px) and (min-width: 0) {
+@media (max-width: 610px) and (min-width: 0) {
   header #logotext {
     display: none;
   }
 }
 
-@media only screen and (max-width: 395px) and (min-width: 0) {
+@media only screen and (max-width: 490px) and (min-width: 0) {
   #about {
     display: none;
   }
 }
 
-@media only screen and (max-width: 320px) and (min-width: 0) {
+@media only screen and (max-width: 375px) and (min-width: 0) {
   a#tut {
     display: none;
   }
