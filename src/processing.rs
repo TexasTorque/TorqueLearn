@@ -1,10 +1,9 @@
-use std::{ffi::OsString, fs::{self, File, copy, create_dir_all}, io::Write, ops::Index, path::{Path, PathBuf}};
+use std::{ffi::OsString, fs::{self, File, copy, create_dir_all}, io::Write, path::{Path, PathBuf}};
 
 use copy_dir::copy_dir;
 use glob::glob;
 use markdown::file_to_html;
 use walkdir::WalkDir;
-use regex::Regex;
 
 const FORMAT_HTML: &'static str = include_str!("../layout/format.html");
 const SECTION_FORMAT_HTML : &'static str = include_str!("../layout/section_format.html");
@@ -23,7 +22,7 @@ pub fn process() {
     println!("Processing files...");
     
     // Remove deploy directory
-    fs::remove_dir_all("deploy/");
+    fs::remove_dir_all("deploy/").ok();
     
     // Create deploy directory
     fs::create_dir("deploy/").expect("Failed to create a new deploy directory!");
@@ -71,9 +70,8 @@ pub fn process() {
                     let p : &str = dir.path().to_str().expect("Failed path->str").trim_start_matches("deploy");
 
                     let mut paths: Vec<_> = fs::read_dir(dir.path()).unwrap().map(|r| r.unwrap()).collect(); 
-                    paths.sort_by_key(|dir| dir.path()); // alphabetical order?
+                    paths.sort_by_key(|dir| dir.path()); 
                     for path in paths {
-                        //let path = path.unwrap();
                         let n = path.file_name();
                         let name = n.to_str().expect("Failed OSString->str");
                         ret.push_str(TOP_DIR_ENTRY);
@@ -113,18 +111,7 @@ fn handle_md(path: PathBuf, featured: Vec<&str>) {
     output = output.replace("{CONTENT}", html.as_str());
     output = output.replace("{PAGE_NAME}", file_name.to_str().expect("Failed getting file name"));
     
-    let re = Regex::new(r"<h.*</h.>").expect("Failed generating regex");
-    let re_id = Regex::new("\'.+\'").expect("Failed generating regex");
-    let re_name = Regex::new(">.+<").expect("Failed generating regex");
-    
     let mut toc : String = String::new(); 
-    /*for cap in re.captures_iter(html.as_str()) {
-        toc.push_str(TOC_LIST_START);
-        //toc.push_str(&re_id.find(cap.index(0)).expect("Failed finding TOC id").as_str().replacen("'", "", 1));
-        //toc.push_str(&re_name.find(cap.index(0)).expect("Failed finding TOC name").as_str().trim_end_matches("<"));
-        toc.push_str(&cap.get(0).unwrap().as_str());
-        toc.push_str(TOC_LIST_END);
-    }*/
     for feature in featured {
         toc.push_str(TOC_LIST_START);
         toc.push_str(feature);
@@ -132,9 +119,7 @@ fn handle_md(path: PathBuf, featured: Vec<&str>) {
         toc.push_str(feature);
         toc.push_str(TOC_LIST_END);
     }
-
     output = output.replace("{TOC}", &toc);
-    
 
     let mut file_name: String = path.to_str().expect("Failed converting Path").split("pages/").last().expect("Invalid path directory, missing pages!").to_string();
 
