@@ -21,11 +21,14 @@ jobs:
             toolchain: nightly
             override: true
 
+      - name: Install wasm-pack
+        run: cargo install wasm-pack
+
       - name: Cache built rust dependencies
         uses: Swatinem/rust-cache@v1
 
       - name: Build the server
-        run: cargo build --release
+        run: sh build.sh
       
       - name: Restart server
         run: sudo systemctl restart torquelearn

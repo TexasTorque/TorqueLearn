@@ -15,7 +15,7 @@ fn main() {
     // Server builder
     let server_builder = Command::new("cargo")
         .current_dir("./server")
-        .arg("build")
+        .args(["build", "--release"])
         .output()
         .expect("Failed to build server");
 

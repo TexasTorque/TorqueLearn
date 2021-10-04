@@ -28,8 +28,7 @@ pub fn process() {
     // Create deploy directory
     fs::create_dir("deploy/").expect("Failed to create a new deploy directory!");
 
-    // Copy WASM to directory
-    
+
     // Copy non-page files
     for entry in glob("layout/*.html").expect("Failed to read glob pattern!") {
         match entry {
@@ -51,6 +50,13 @@ pub fn process() {
 
     // Bring over static folder
     copy_dir("layout/static/", "deploy/static").expect("Failed copying static!");
+
+    // Copy WASM to directory
+    Command::new("cp")
+        .args(["-r", "./pkg", "./deploy/static/"])
+        .output()
+        .expect("Failed to move WASM");
+    
 
     let featured_file : String = fs::read_to_string("pages/Featured.csv")
         .expect("Something went wrong reading the file");
