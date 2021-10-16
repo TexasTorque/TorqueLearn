@@ -30,4 +30,4 @@ polarity in the brushed motor, a brushless motor utilizes integrated circuits th
 the stator magnets on and off, dragging the rotor with it.
 
 It's okay to say that brushless motors are better in most cases (when designed well). They don't rely  
-on fragile brushes constantly making contact with the rotor, produce less heat, and can more easily integrate encoding (due to the fact that the rotations are controlled by a computer in the first place)
+on fragile brushes constantly making contact with the rotor, produce less heat, and can more easilyintegrate encoding (due to the fact that the rotations are controlled by a computer in the first place)
