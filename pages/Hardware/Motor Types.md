@@ -11,7 +11,7 @@ motors do not. However, what does this actually mean? The basic principle of a m
 attraction between a stator (a set of stationary magnets) and a rotor (a rotating set of magnets), resulting  
 in circular motion. 
 
-A bruhsed motor's stator is made up of two opposite poles facing in towards the rotor, attracting the rotor,  
+A brushed motor's stator is made up of two opposite poles facing in towards the rotor, attracting the rotor,  
 composed of copper coil electromagnets. However, if the charges of the rotor electromagnets remain constant,  
 the rotor would move into orientation with the stator and then stop, which does not produce the desired  
 continuous rotation. Instead the polarity of the electro magnets must be reversed every 180 degrees (in  
@@ -29,4 +29,5 @@ is an array of coil electromagnets. Instead of the electro-mechanical method of 
 polarity in the brushed motor, a brushless motor utilizes integrated circuits that progressively switch
 the stator magnets on and off, dragging the rotor with it.
 
-It's okay to say that brushless motors are better in most cases (when designed well)
+It's okay to say that brushless motors are better in most cases (when designed well). They don't rely  
+on fragile brushes constantly making contact with the rotor, produce less heat, and can more easily integrate encoding (due to the fact that the rotations are controlled by a computer in the first place)
