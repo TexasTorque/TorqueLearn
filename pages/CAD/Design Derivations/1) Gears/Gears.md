@@ -3,7 +3,7 @@
 ## Intro
 
 Gear are a simple yet effective way to trasfer rotaional power. Gears are used in all sorts of mechanisms from drivetrains to jointed arms and elevators.
-s
+
 
 ## Concepts
 
@@ -97,10 +97,10 @@ Since adjacent gears are touching at a point: $F_1=F_2=F_{12}$
 ![Gear Torque Diagram](/layout/static/imgs/CAD/GearTorqueDiagram.png)
 
 $$F_{12}=\tau_1/r_1$$
-$$\tau_2=F_{12}r_2$$
-$$\tau_2=\frac{r_2}{r_1}\tau_1$$
+$$\tau_2=-F_{12}r_2$$
+$$\tau_2=-\frac{r_2}{r_1}\tau_1$$
 $$\tau_3=\tau_2$$
-$$\tau_4=\frac{r_4}{r_3}\tau_3$$
+$$\tau_4=-\frac{r_4}{r_3}\tau_3$$
 $$\tau_4=\frac{r_4}{r_3}\frac{r_2}{r_1}\tau_1$$
 
 From this result, it is apparent that torque follows a similar relationship to that of angular velocity except that the coefficient on the input term in the torque equation is the reciprocal of the corresponding coefficient in the angular velocity equation. 
@@ -111,10 +111,76 @@ $$\tau_n=\tau_1\prod_{i=1}^{n/2}-\frac{T_{2i}}{T_{2i-1}}$$
 
 ### Inertia
 
-**Relevance:** When a gear spins, it will have a tendency to keep spinning. This continued spinning after removal of power can skew percision.
+**Relevance:** When a gear spins, it will have a tendency to stay in its current state. This continued spinning, or lack thereof, affects the motion of a gear.
 
-TBD
+**Moment of Inertia**
 
+The moment of inertia is defined as:
+
+$$I=\int r^2 dm$$
+
+The closer mass is located to the axis of rotation, the lower the moment of inertia, and the easier it is for the object to spin. 
+
+The following formula assumes that the gear has constant density and can be approximated as a cylinder. 
+
+$$I_{gear}=mr^2$$
+
+Most Vex gears are half an inch wide and are made of 7075-T6 Aluminum. We can use this to find the mass of the gear in terms of the tooth count of the gear. Using the formula above in the "positioning" section, we can also find the radius of the gear in terms of tooth count.  
+
+| Equation | Comment |
+| ----------- | ----------- |
+| $D=M/V$ | definition of density |
+| $M=D*V$ | mass formula |
+| $d=T/dp$ | gear diameter formula |
+| $r=T/2dp$ | gear radius fomula |
+| $V=\pi r^2 h$ | volume of a cylinder |
+| $M=D*\pi r^2 h$ | mass of a cylinder |
+| $M=D*\pi (T/2dp)^2 h$ | mass of a gear |
+| $M=D\pi h \frac{T^2}{4dp^2}$ | simplified |
+| $D=2810\ kg/m^3$ | density of 7075 |
+| $h=.5$ | thickness of a gear |
+| $M= 1103 \left( \frac{T^2}{dp^2} \right)$ | substitution and simplification |
+
+The mass of a gear is 1103 time the square of the tooth count divided by the square of the diametrial pitch. This means that the moment of inertia ($kgm^2$) of a gear is:
+
+$$I_{gear}=D\pi h \left( \frac{T^2}{4dp^2} \right)^2$$
+$$I_{gear}=D\pi h \left( \frac{T^4}{16dp^4} \right)$$
+$$I_{gear}=276 \left( \frac{T^4}{dp^4} \right)$$
+
+**Inertia in Reductions**
+
+From before we have: 
+
+$$\omega_1=-\frac{T_2}{T_1}\omega_2$$
+$$\tau_2=-\frac{r_2}{r_1}\tau_1$$
+
+Derivative with respect to time: 
+$$\alpha_1=-\frac{T_2}{T_1}\alpha_2$$
+
+By definition: 
+$$\tau=I\alpha$$
+$$r=T/2dp$$
+
+Substituting:
+
+$$\tau_1=I_1\alpha_1$$
+$$\tau_2=I_2\alpha_2$$
+$$I_2\alpha_2=-\frac{r_2}{r_1}I_1\alpha_1$$
+$$I_2\alpha_2=-\frac{T_2/2dp}{T_1/2dp}I_1\alpha_1$$
+$$I_2\alpha_2=-\frac{T_2}{T_1}I_1\alpha_1$$
+$$I_2\alpha_2=-\frac{T_2}{T_1}I_1* \left( -\frac{T_2}{T_1}\alpha_2 \right)$$
+$$I_2\alpha_2=\left( \frac{T_2}{T_1} \right)^2I_1 \alpha_2$$
+$$I_2=\left( \frac{T_2}{T_1} \right)^2I_1$$
+$$I_1=\left( \frac{T_1}{T_2} \right)^2I_2$$
+
+Since the apparent moment of inertia is directly proportional to the square of the reduction, this derivation shows us that gear reducations allow inputs to drive systems with much larger moments as if they were small moments. In other words, reducations can help move a large flywheel with ease. 
+
+Although gears do add interia to a system, it is typically small in comparison to the benefit of the reduction. 
+
+Taking into account the inertia of the gears themselves:
+
+$$I_{in}=\left( \frac{T_1}{T_2} \right)^2(I_{out}+I_{G2}) + I_{G1}$$
+$$I_{out}=\left( I_{in}-I_{G1} \right) \left( \frac{T_2}{T_1} \right)^2-I_{G2}$$
 
 ## Credits
 
