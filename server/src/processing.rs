@@ -2,7 +2,7 @@ use std::{ffi::OsString, fs::{self, File, copy, create_dir_all}, io::Write, path
 
 use copy_dir::copy_dir;
 use glob::glob;
-use markdown::file_to_html;
+use comrak::{markdown_to_html, ComrakOptions};
 use walkdir::WalkDir;
 use std::process::Command;
 
@@ -18,6 +18,7 @@ const BOTTOM_DIR_ENTRY: &'static str = "</a>";
 const TOC_LIST_START: &'static str = "<li><a class=\"\" href=\"/Tutorials/";
 const TOC_LIST_MID: &'static str = "\">";
 const TOC_LIST_END: &'static str = "</a></li>";
+
 
 pub fn process() {
     println!("Processing files...");
@@ -113,7 +114,11 @@ pub fn process() {
 }
 
 fn handle_md(path: PathBuf, featured: Vec<&str>) {
-    let html : String = file_to_html(&path).expect("failed to read MD!");
+    let mut md_options: ComrakOptions = ComrakOptions::default();
+    md_options.extension.strikethrough = true;
+    md_options.extension.table = true;
+    
+    let html : String = markdown_to_html(&fs::read_to_string(&path).expect("Failed reading markdown"), &md_options);
     let file_name : OsString = path.file_name().expect("Failed to read file name!").to_owned();
 
     let mut output = FORMAT_HTML.clone().to_string();
