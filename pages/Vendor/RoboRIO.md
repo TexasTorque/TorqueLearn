@@ -16,4 +16,4 @@ Out of the box, a RoboRIO is not fully set up as it does NOT include a built-in 
 
 1. https://firstfrc.blob.core.windows.net/frc2020/Radio/FRC_Radio_Configuration_20_0_0.zip
 
-2.https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-1/how-to-wire-a-robot.html
+2. https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-1/how-to-wire-a-robot.html
