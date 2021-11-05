@@ -1,5 +1,7 @@
 # RoboRIO
 
+![RoboRIO](/static/imgs/vendors/roborio.png)
+
 ## What is a RoboRIO?
 
 A roboRIO is the only FRC legal reconfigurable robotics controller that includes built-in ports for inter-integrated circuits (I2C), serial peripheral interfaces (SPI), RS232, USB, Ethernet, pulse width modulation (PWM), and relays to quickly connect the common sensors and actuators used in robotics. A RoboRIO includes built in LEDs, buttons, an onboard accelerometer, and a custom electronics port and is the central hub for all other external sensors, motors, or lights to be wired to.
