@@ -117,7 +117,9 @@ fn handle_md(path: PathBuf, featured: Vec<&str>) {
     let mut md_options: ComrakOptions = ComrakOptions::default();
     md_options.extension.strikethrough = true;
     md_options.extension.table = true;
-    
+    md_options.render.unsafe_ = true; // allow iframes
+    md_options.extension.header_ids = Some("".to_string());
+
     let html : String = markdown_to_html(&fs::read_to_string(&path).expect("Failed reading markdown"), &md_options);
     let file_name : OsString = path.file_name().expect("Failed to read file name!").to_owned();
 

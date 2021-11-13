@@ -4,3 +4,4 @@ deploy/
 */.DS_Store
 wasm/target
 server/target
+./torquelearn

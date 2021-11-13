@@ -4,13 +4,11 @@
 
 hook/description
 
-
 ## Concepts
 
 [Exit Velocity](#exit-velocity)
 
 ### Exit Velocity
-
 
 ## Credits
 
