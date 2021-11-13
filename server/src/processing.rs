@@ -63,13 +63,17 @@ pub fn process() {
         .expect("Something went wrong reading the file");
     let featured : Vec<&str> = featured_file.split(",").collect();
 
+    let mut urls : Vec<String> = Vec::new();
+
+    urls.push("".to_string());
     // Read all MDs
     for entry in glob("pages/**/*.md").expect("Failed to read glob pattern!") {
         match entry {
-            Ok(path) => handle_md(path, featured.clone()),
+            Ok(path) => urls.push(handle_md(path, featured.clone())),
             Err(e) => println!("{:?}", e),
         }
     }
+
     WalkDir::new("deploy/Tutorials")
         .into_iter()
         .filter_entry(|dir| dir.metadata().expect("Failed to read file metadata").is_dir() && !Path::new(&([dir.path().to_str().expect("Failed path->str"), "/index.html"].join(""))).exists())
@@ -102,7 +106,8 @@ pub fn process() {
                     output = output.replace("{CONTENT}", &ret);
                     output = output.replace("{PAGE_NAME}", dir.file_name().to_str().expect("Failed getting file name"));
                     output = output.replace("{TITLE}", dir.file_name().to_str().expect("Failed getting file name"));
-                    
+
+                    urls.push(dir.path().to_str().expect("Failed path->str").to_string());
                     let mut file = File::create([dir.path().to_str().expect("Failed path->str"), "/index.html"].join("")).expect("Failed opening file to save");
                     file.write_all(output.as_bytes()).expect("Failed to write to file :(!");
                     println!("{:?}", dir.path().to_str().expect("Failed path->str").trim_start_matches("deploy"));
@@ -110,10 +115,12 @@ pub fn process() {
                 Err(e) => println!("Failed walking directory! {:?}", e),
             }
         });
+
+    generate_sitemap(urls);
     println!("Deploy directory successfully created!");
 }
 
-fn handle_md(path: PathBuf, featured: Vec<&str>) {
+fn handle_md(path: PathBuf, featured: Vec<&str>) -> String {
     let mut md_options: ComrakOptions = ComrakOptions::default();
     md_options.extension.strikethrough = true;
     md_options.extension.table = true;
@@ -140,6 +147,7 @@ fn handle_md(path: PathBuf, featured: Vec<&str>) {
     let mut file_name: String = path.to_str().expect("Failed converting Path").split("pages/").last().expect("Invalid path directory, missing pages!").to_string();
 
     file_name = file_name.trim_end_matches(".md").to_string();
+    let path_url = ["Tutorials/", &file_name].join("");
     file_name.push_str(".html");
     file_name = ["deploy/Tutorials/", &file_name].join("");
    
@@ -149,4 +157,24 @@ fn handle_md(path: PathBuf, featured: Vec<&str>) {
     
     let mut file = File::create([directories, "/index.html"].join("")).expect("Failed to open file to save!");
     file.write_all(output.as_bytes()).expect("Failed to write to file :(!");
+    
+    return path_url; 
+}
+
+fn generate_sitemap(urls: Vec<String>) {
+    // Header
+    let mut sitemap = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">".to_string();
+    
+    urls.into_iter().for_each(|x| {
+        sitemap.push_str("<url><loc>https://learn.texastorque.org/");
+        sitemap.push_str(&x);
+        sitemap.push_str("</loc></url>");
+    });
+
+
+    // End
+    sitemap.push_str("</urlset>");
+
+    let mut file = File::create("deploy/sitemap.xml").expect("Failed to open file to save!");
+    file.write_all(sitemap.as_bytes()).expect("Failed to write to file :(!");
 }
