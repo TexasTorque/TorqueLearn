@@ -36,7 +36,7 @@ pub fn process() {
             Ok(path) => {
                 let file_name : &str = path.file_name().expect("Failed to get file name!").to_str().expect("Failed converting OS String to &str!"); 
                 if file_name != "format.html" && file_name != "section_format.html" {
-                    if file_name == "index.html" {
+                    if file_name == "index.html" || file_name == "editor.html" {
                         copy(path.clone(), ["deploy/", file_name].join("")).expect("Failed copying HTML file over");
                     } else {
                         let dir = ["deploy/", file_name.trim_end_matches(".html")].join("");
