@@ -4,24 +4,25 @@
 
 - Simple > Complicated
 - Explicit > Implicit
+- Ability to read code > Ability to write code
 - Comments don't explain your code to humans, code explains your comments to the computer
 - The best procedure is no procedure
-- Only use Object Oritentation when necessary
+- Don't overuse a programming paradigm (OOP, functional)
 - It's not what you know, it's what you do with what you know
-- Leet Code doesn't mean much if anything
+- Leet Code doesn't mean much of anything
 - The most valuable skill is the ability to figure things out
 - Before you ask what something does, think through it
 - That said, if you are really stuck, *please* ask questions
 
 ## Best Practices
 
-### Avoid using getters and setters
+### Use getters and setters
 
-They lead to over encapsulation and are generally not necessary.
+Avoid unnecessary public variables, getters, and setters, but use getters and setters to control access to private members.
 
 ### Curly braces go on the same line as the statement they are tied to
 
-Except for really long function declerations
+Except for really long function declarations
 
 ```java
 public class Example {
