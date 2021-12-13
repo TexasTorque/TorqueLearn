@@ -7,7 +7,7 @@ Before replacing the plastic portions of the doors it is nesecary to remove the 
 1/8 inch polycarbonate should be used to replace the doors, as acrylic will crack. The old doors should be used as a template on the table saw to cut new doors at the same size.
 
 ## Ataching new plastic portion
-When ataching the platic portion of the door allign the polcarbonate peice with the frame of the door. Use a who **###ing** knows sized drill bit to drill holes in the polycarbonate usign the frame to align. Holes for the handle on the side doors also need a who **###ing** knows sized drill bit, as well as the handles on the front door.
+When ataching the platic portion of the door allign the polcarbonate peice with the frame of the door. Use a 5/16in drill bit to drill holes in the polycarbonate usign the frame to align. Holes for the handle on the side doors also need 3/16in drill bit, as well as the handles on the front door.
 
 ## Reattching Doors
 To rettach the doors first align the I-bolts to the holes in the frame, then tighten the 9/16 nuts. The doors may need adjustment in either height or level to ride smothly and mate correctly. This can be done by raising or lowering the top nut then loosening or tightening the bottom nut as neccecaary, until the correct height or level is achived. The side doors will need to lifted to the top of the machine to be reinserted. It may be nesecary to have a secound person help to align the doors with the interior tracks.
