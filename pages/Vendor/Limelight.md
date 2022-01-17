@@ -46,6 +46,10 @@ If you would like to change the leds on Limelight (on, off, blink), you can set 
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").forceSetNumber(3);
 ```
 
-## Other Settings
+## Finding Targets
+To have Limelight lock onto a target, you need to aim a robot with a Limelight camera to a reflective tape strip. These are usually found on goals in FRC matches. After that, connect to the robots wifi network and go to http://10.TE.AM.11:5801. From here, ensure that you have a live feed from the Limelight. You should see the reflective tape strips on the feed glowing a bit. To tune the camera, go to the Thresholding tab and then click on the eyedropper. Now click on the pixels for the glowing vision strips and then you should see a red dot on the strip. You should also be able to see updating t-values underneath the stream. If you are getting interference with your stream, edit the sliders in the Thresholding tab until your t-values are consistent.
 
-From here, you can change all other Limelight settings from http://10.te.am.11:5801. There are options for Input, Thresholding, Contour Filtering, Output, and 3D tuning tabs.
+![Limelight Distance Formula](/static/imgs/vendors/LimelightDistance.jpg)
+
+## Measuring Distances
+If you need to be able to calculate the distance between a target and your robot, there is a simple way to do this. The first thing that you will need is to get a few measurements. The height up to the middle of the Limelight lense from the ground(h1), the height of the vision tape strips(h2), the angle that the Limelight is mounted at(a1), the ty value from the Limelight, and for testing purposes, the horizontal distance from the vision strips to the Limelight camera(d). You can now plug these values into the equation d = (h2-h1) / tan(a1+a2). If the distance output you are getting is not accurate to the actual measured distance, try adjusting your a1 value by a few degrees.
