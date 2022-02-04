@@ -12,11 +12,18 @@ jobs:
     runs-on: self-hosted
     
     outputs:
-      deploy: ${{ steps.filter.outputs.deploy }}
+      deploy: ${{ steps.filter.outputs.deploy || steps.binary.outputs.cache-hit != 'true'}}
   
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
+
+      - name: Check if build binary is cached
+        id: binary
+        uses: actions/cache@v2
+        with:
+          path: torquelearn
+          key: ${{ runner.os }}-torquelearn
 
       - uses: dorny/paths-filter@v2
         id: filter
@@ -48,6 +55,14 @@ jobs:
 
       - name: Build the server
         run: sh build.sh
+      
+      - name: Cache binary
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: torquelearn
+          key: ${{ runner.os }}-torquelearn
+
       
   restart:
     if: always()
