@@ -24,6 +24,10 @@ jobs:
           filters: |
             deploy:
               - 'src/**'
+              - 'server/**'
+              - 'wasm/**'
+              - 'Rocket.toml'
+              - 'Cargo.toml'
 
   deploy:
     needs: changes
