@@ -8,13 +8,28 @@ on:
 
 jobs:
 
-  deploy:
+  changes:
     runs-on: self-hosted
-
+    
+    outputs:
+      deploy: ${{ steps.filter.outputs.deploy }}
+  
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
-      
+
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            deploy:
+              - 'src/**'
+
+  deploy:
+    needs: changes
+    if: ${{ needs.changes.outputs.deploy == 'true' }}
+    runs-on: self-hosted
+    steps:
       - name: Install latest nightly
         uses: actions-rs/toolchain@v1
         with:
@@ -30,5 +45,9 @@ jobs:
       - name: Build the server
         run: sh build.sh
       
+  restart:
+    runs-on: self-hosted
+    
+    steps:
       - name: Restart server
         run: sudo systemctl restart torquelearn
