@@ -6,7 +6,7 @@ While it might not seem important, having proper posture while working at a desk
 
 Arthritis is a disease that involves inflammation or breakdown of your joints, leading to pain when bending or flexing the area. Some of the earliest signs of arthritis could be pain, swelling, warm joints, stiffness, numbness and tingling, and bumps in the fingers. On the other hand, Carpal tunnel syndrome is when a major nerve in the hand, the median nerve, becomes compressed in the carpal tunnel, a narrow passageway on the palm side of your wrist that also houses the tendons that bend the fingers. Repetitive hand motions, such as those that occur when someone works on an assembly line, often contribute to carpal tunnel syndrome. With excessive motion, the tendons of the fingers can get swollen or inflamed and squeeze the median nerve. Arthritis is inflammation or damage to a joint versus Carpal Tunnel squeezing a nerve, both resulting in difficulty in squeezing your hand. There is a common misconception that excessive typing leads to Carpal Tunnel, however typing is more likely to lead to arthritis than Carpal Tunnel.
 
-![Proper Posture](/static/imgs/vendors/ProperPosture.png)
+![Proper Posture](/static/imgs/ProperPosture.png)
 
 ## How To Properly Setup Your Desk
 
