@@ -24,7 +24,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: torquelearn
-          key: ${{ runner.os }}-torquelearn
+          key: ${{ runner.os }}-torquelearn-bin
 
       - uses: dorny/paths-filter@v2
         id: filter
@@ -64,7 +64,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: torquelearn
-          key: ${{ runner.os }}-torquelearn
+          key: ${{ runner.os }}-torquelearn-bin
 
       
   restart:
