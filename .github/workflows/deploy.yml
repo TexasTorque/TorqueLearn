@@ -12,7 +12,8 @@ jobs:
     runs-on: self-hosted
     
     outputs:
-      deploy: ${{ steps.filter.outputs.deploy || steps.binary.outputs.cache-hit != 'true'}}
+      paths: ${{ steps.filter.outputs.deploy}}
+      cache: ${{steps.binary.outputs.cache-hit}}
   
     steps:
       - name: Checkout the code
@@ -38,7 +39,9 @@ jobs:
 
   deploy:
     needs: changes
-    if: ${{ needs.changes.outputs.deploy == 'true' }}
+    if: |
+      needs.changes.outputs.deploy == 'true' ||
+      needs.changes.outputs.cache != 'true'
     runs-on: self-hosted
     steps:
       - name: Install latest nightly
