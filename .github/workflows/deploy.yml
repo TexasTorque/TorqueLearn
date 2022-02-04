@@ -46,6 +46,7 @@ jobs:
         run: sh build.sh
       
   restart:
+    needs: [changes, deploy]
     runs-on: self-hosted
     
     steps:
