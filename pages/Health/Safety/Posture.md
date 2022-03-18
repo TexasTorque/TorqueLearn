@@ -18,3 +18,7 @@ While sitting at a desk, the average person burns around 80 calories/hour. While
 Advocates of standing desks point to studies showing that after a meal, blood sugar levels return to normal faster on days a person spends more time standing. And standing, rather than sitting, may reduce the risk of shoulder and back pain.
 
 Keep in mind that using a standing desk is like any other “intervention” - it can come with side effects. For example, if you suddenly go from sitting all day to standing all day, you could run the risk of developing back, leg, or foot pain. It’s better to slowly adjust to it by starting with 30 to 60 minutes a day and gradually increasing it. Setting a timer to remind you when to stand or sit (as many experts recommend) can disrupt your concentration, reduce your focus, and reduce your efficiency or creativity. You may want to experiment with different time intervals to find the one that works best for you. It’s also true that certain tasks, especially those requiring fine motor skills, can be more accurately performed while seated. So, a standing desk may not be a good answer for everyone who sits a lot at work.
+
+## Credits
+
+Initially written by [Omar Afzal](https://github.com/0mara) in January 2022

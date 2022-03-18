@@ -19,3 +19,7 @@ The fields that you would want to fill out are the team number, robot name, and 
 ### Problems and Solutions
 
 It is likely that you will run into error while trying to deploy the changes, the best thing to do is to JUST KEEP TRYING AGAIN AND AGAIN! If you run into error messages, try the following: Ensure that you have a complete connection on both sides of the ethernet cable and perhaps try using a different cable. Ensure that you are plugged into the right ethernet port on the radio. Power cycle your PC and radio. If none of the following work, try using a different PC.
+
+## Credits
+
+Initially written by [Omar Afzal](https://github.com/0mara) in November 2021

@@ -53,3 +53,7 @@ To have Limelight lock onto a target, you need to aim a robot with a Limelight c
 
 ## Measuring Distances
 If you need to be able to calculate the distance between a target and your robot, there is a simple way to do this. The first thing that you will need is to get a few measurements. The height up to the middle of the Limelight lense from the ground(h1), the height of the vision tape strips(h2), the angle that the Limelight is mounted at(a1), the ty value from the Limelight, and for testing purposes, the horizontal distance from the vision strips to the Limelight camera(d). You can now plug these values into the equation d = (h2-h1) / tan(a1+a2). If the distance output you are getting is not accurate to the actual measured distance, try adjusting your a1 value by a few degrees.
+
+## Credits
+
+Initially written by [Omar Afzal](https://github.com/0mara) in December 2021
