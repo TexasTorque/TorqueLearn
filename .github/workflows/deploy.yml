@@ -39,9 +39,9 @@ jobs:
 
   deploy:
     needs: changes
-    if: |
-      needs.changes.outputs.deploy == 'true' ||
-      needs.changes.outputs.cache != 'true'
+#     if: |
+#       needs.changes.outputs.deploy == 'true' ||
+#       needs.changes.outputs.cache != 'true'
     runs-on: self-hosted
     steps:
       - name: Install latest nightly
