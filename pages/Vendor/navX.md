@@ -36,12 +36,9 @@ See the section [Fused Heading](https://pdocs.kauailabs.com/navx-mxp/guidance/te
 
 The magnetmeter on the NavX informs the NavX of the Earth's gravitational field. It must be calibrated using [this software](https://www.kauailabs.com/support/navx-mxp/kb/faq.php?id=25).
 
-![navXCalibrator](/static/imgs/vendors/navx_magnetometer.png)
-
 Unplug the NavX from the SPI port, and plug the NavX with a mini-B to a computer running the software. Align the NavX according to the included pictures (12 data points). Flash to the controller once done.
-
 
 ### Problems & Solutions
 
-* Problem: The gyro is giving wildly inaccurate values!
-    - Solution: Have you tried recalibrating it?
+- Problem: The gyro is giving wildly inaccurate values!
+  - Solution: Have you tried recalibrating it?
