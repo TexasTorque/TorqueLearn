@@ -50,8 +50,8 @@ jobs:
             toolchain: nightly
             override: true
 
-      - name: Install wasm-pack
-        run: cargo install wasm-pack --version 0.10.1
+#       - name: Install wasm-pack
+#         run: cargo install wasm-pack --version 0.10.1
 
       - name: Cache built rust dependencies
         uses: Swatinem/rust-cache@v1
