@@ -8,9 +8,8 @@
 
 #hero-image {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-  /*url("imgs/Sep23Team.jpg");*/
-  /*url("imgs/hero_2019_farewell.jpeg");*/
-  url("imgs/pasadena_blue_banner.jpg");
+    url("imgs/Sep23Team.jpg");
+    /*url("imgs/hero_2019_farewell.jpeg");*/
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
