@@ -1,13 +1,13 @@
-use std::{ffi::OsString, fs::{self, File, copy, create_dir_all}, io::Write, ops::Index, path::{Path, PathBuf}};
+use std::{ffi::OsString, fs::{self, File, copy, create_dir_all}, io::Write, path::{Path, PathBuf}};
 
 use copy_dir::copy_dir;
 use glob::glob;
-use markdown::file_to_html;
+use comrak::{markdown_to_html, ComrakOptions};
 use walkdir::WalkDir;
-use regex::Regex;
+use std::process::Command;
 
-const FORMAT_HTML: &'static str = include_str!("../layout/format.html");
-const SECTION_FORMAT_HTML : &'static str = include_str!("../layout/section_format.html");
+const FORMAT_HTML: &'static str = include_str!("../../layout/format.html");
+const SECTION_FORMAT_HTML : &'static str = include_str!("../../layout/section_format.html");
 
 const TOP_DIR_ENTRY: &'static str = "<a href=\"{URL}\"class=\"box\"><h3>";
 const MIDDLE_SECTION_ENTRY: &'static str = "</h3>";
@@ -19,22 +19,24 @@ const TOC_LIST_START: &'static str = "<li><a class=\"\" href=\"/Tutorials/";
 const TOC_LIST_MID: &'static str = "\">";
 const TOC_LIST_END: &'static str = "</a></li>";
 
+
 pub fn process() {
     println!("Processing files...");
     
     // Remove deploy directory
-    fs::remove_dir_all("deploy/");
+    fs::remove_dir_all("deploy/").ok();
     
     // Create deploy directory
     fs::create_dir("deploy/").expect("Failed to create a new deploy directory!");
-    
+
+
     // Copy non-page files
     for entry in glob("layout/*.html").expect("Failed to read glob pattern!") {
         match entry {
             Ok(path) => {
                 let file_name : &str = path.file_name().expect("Failed to get file name!").to_str().expect("Failed converting OS String to &str!"); 
                 if file_name != "format.html" && file_name != "section_format.html" {
-                    if file_name == "index.html" {
+                    if file_name == "index.html" || file_name == "editor.html" {
                         copy(path.clone(), ["deploy/", file_name].join("")).expect("Failed copying HTML file over");
                     } else {
                         let dir = ["deploy/", file_name.trim_end_matches(".html")].join("");
@@ -50,17 +52,28 @@ pub fn process() {
     // Bring over static folder
     copy_dir("layout/static/", "deploy/static").expect("Failed copying static!");
 
+    // Copy WASM to directory
+    Command::new("cp")
+        .args(["-r", "./pkg", "./deploy/static/"])
+        .output()
+        .expect("Failed to move WASM");
+    
+
     let featured_file : String = fs::read_to_string("pages/Featured.csv")
         .expect("Something went wrong reading the file");
     let featured : Vec<&str> = featured_file.split(",").collect();
 
+    let mut urls : Vec<String> = Vec::new();
+
+    urls.push("".to_string());
     // Read all MDs
     for entry in glob("pages/**/*.md").expect("Failed to read glob pattern!") {
         match entry {
-            Ok(path) => handle_md(path, featured.clone()),
+            Ok(path) => urls.push(handle_md(path, featured.clone())),
             Err(e) => println!("{:?}", e),
         }
     }
+
     WalkDir::new("deploy/Tutorials")
         .into_iter()
         .filter_entry(|dir| dir.metadata().expect("Failed to read file metadata").is_dir() && !Path::new(&([dir.path().to_str().expect("Failed path->str"), "/index.html"].join(""))).exists())
@@ -71,9 +84,8 @@ pub fn process() {
                     let p : &str = dir.path().to_str().expect("Failed path->str").trim_start_matches("deploy");
 
                     let mut paths: Vec<_> = fs::read_dir(dir.path()).unwrap().map(|r| r.unwrap()).collect(); 
-                    paths.sort_by_key(|dir| dir.path()); // alphabetical order?
+                    paths.sort_by_key(|dir| dir.path()); 
                     for path in paths {
-                        //let path = path.unwrap();
                         let n = path.file_name();
                         let name = n.to_str().expect("Failed OSString->str");
                         ret.push_str(TOP_DIR_ENTRY);
@@ -94,7 +106,8 @@ pub fn process() {
                     output = output.replace("{CONTENT}", &ret);
                     output = output.replace("{PAGE_NAME}", dir.file_name().to_str().expect("Failed getting file name"));
                     output = output.replace("{TITLE}", dir.file_name().to_str().expect("Failed getting file name"));
-                    
+
+                    urls.push(dir.path().to_str().expect("Failed path->str").to_string());
                     let mut file = File::create([dir.path().to_str().expect("Failed path->str"), "/index.html"].join("")).expect("Failed opening file to save");
                     file.write_all(output.as_bytes()).expect("Failed to write to file :(!");
                     println!("{:?}", dir.path().to_str().expect("Failed path->str").trim_start_matches("deploy"));
@@ -102,29 +115,26 @@ pub fn process() {
                 Err(e) => println!("Failed walking directory! {:?}", e),
             }
         });
+
+    generate_sitemap(urls);
     println!("Deploy directory successfully created!");
 }
 
-fn handle_md(path: PathBuf, featured: Vec<&str>) {
-    let html : String = file_to_html(&path).expect("failed to read MD!");
+fn handle_md(path: PathBuf, featured: Vec<&str>) -> String {
+    let mut md_options: ComrakOptions = ComrakOptions::default();
+    md_options.extension.strikethrough = true;
+    md_options.extension.table = true;
+    md_options.render.unsafe_ = true; // allow iframes
+    md_options.extension.header_ids = Some("".to_string());
+
+    let html : String = markdown_to_html(&fs::read_to_string(&path).expect("Failed reading markdown"), &md_options);
     let file_name : OsString = path.file_name().expect("Failed to read file name!").to_owned();
 
     let mut output = FORMAT_HTML.clone().to_string();
     output = output.replace("{CONTENT}", html.as_str());
     output = output.replace("{PAGE_NAME}", file_name.to_str().expect("Failed getting file name"));
     
-    let re = Regex::new(r"<h.*</h.>").expect("Failed generating regex");
-    let re_id = Regex::new("\'.+\'").expect("Failed generating regex");
-    let re_name = Regex::new(">.+<").expect("Failed generating regex");
-    
     let mut toc : String = String::new(); 
-    /*for cap in re.captures_iter(html.as_str()) {
-        toc.push_str(TOC_LIST_START);
-        //toc.push_str(&re_id.find(cap.index(0)).expect("Failed finding TOC id").as_str().replacen("'", "", 1));
-        //toc.push_str(&re_name.find(cap.index(0)).expect("Failed finding TOC name").as_str().trim_end_matches("<"));
-        toc.push_str(&cap.get(0).unwrap().as_str());
-        toc.push_str(TOC_LIST_END);
-    }*/
     for feature in featured {
         toc.push_str(TOC_LIST_START);
         toc.push_str(feature);
@@ -132,13 +142,12 @@ fn handle_md(path: PathBuf, featured: Vec<&str>) {
         toc.push_str(feature);
         toc.push_str(TOC_LIST_END);
     }
-
     output = output.replace("{TOC}", &toc);
-    
 
     let mut file_name: String = path.to_str().expect("Failed converting Path").split("pages/").last().expect("Invalid path directory, missing pages!").to_string();
 
     file_name = file_name.trim_end_matches(".md").to_string();
+    let path_url = ["Tutorials/", &file_name].join("");
     file_name.push_str(".html");
     file_name = ["deploy/Tutorials/", &file_name].join("");
    
@@ -148,4 +157,24 @@ fn handle_md(path: PathBuf, featured: Vec<&str>) {
     
     let mut file = File::create([directories, "/index.html"].join("")).expect("Failed to open file to save!");
     file.write_all(output.as_bytes()).expect("Failed to write to file :(!");
+    
+    return path_url; 
+}
+
+fn generate_sitemap(urls: Vec<String>) {
+    // Header
+    let mut sitemap = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">".to_string();
+    
+    urls.into_iter().for_each(|x| {
+        sitemap.push_str("<url><loc>https://learn.texastorque.org/");
+        sitemap.push_str(&x);
+        sitemap.push_str("</loc></url>");
+    });
+
+
+    // End
+    sitemap.push_str("</urlset>");
+
+    let mut file = File::create("deploy/sitemap.xml").expect("Failed to open file to save!");
+    file.write_all(sitemap.as_bytes()).expect("Failed to write to file :(!");
 }

@@ -4,7 +4,6 @@
 
 In FRC, robots are often tasked with launching projectiles. Understanding how a projectile travels through air is key to designing mechanisms known as "shooters."
 
-
 ## Concepts
 
 [Vacuum](#vacuum)\
@@ -13,20 +12,20 @@ In FRC, robots are often tasked with launching projectiles. Understanding how a 
 [Precession](#precession)\
 [Nutation](#nutation)
 
-
 ### Vacuum
 
 **Relevance:** Objects moving at low speeds can often be approximated by ignoring drag which may be favorable as computing drag is complex.
 
 In a vacuum, gravity is the only force acting on the projectile, although the projectile may have some initial horizontal and vertical velocities.
 
-![Projectile Motion Diagram](/layout/static/imgs/CAD/ProjectileMotionDiagram.gif)
+![Projectile Motion Diagram](/static/imgs/CAD/ProjectileMotionDiagram.gif)
 
 Net force equations:
 $$F_x=0$$
 $$F_y=-g$$
 
 The net force equations can be converted into equations of motion by integrating with respect to time twice to yield the parametric equations:
+
 $$x=v_{x0}t+x_0$$
 $$y=-\frac{1}{2}gt^2+v_{y0}t+y_0$$
 
@@ -59,7 +58,7 @@ Let *l* equal the distance to the target and *h* the height of the target.
 From our constraint:
 $$y'|_{x=l}=tan(\theta_f)$$
 
-In words this is y', the slope of the equation of motion, evaluated when x equals *l* is equal to the tangent of the ending angle. 
+In words this is y', the slope of the equation of motion, evaluated when x equals _l_ is equal to the tangent of the ending angle.
 $$y'|_{x=l}=\frac{-g}{v_{x0}^2}l+\frac{v_{y0}}{v_{x0}}=tan(\theta_f)$$
 
 Solving for $v_{y0}$ as if $v_{x0}$ will provide us a starting point to finding $v_{y0}$. Next, we would only need to find $v_{x0}$ in terms of known constants.
@@ -89,12 +88,12 @@ Linear drag: $F_D=kv$
 
 Quadratic drag: $F_D=kv^2$
 
-*k* is basically a fudge factor that needs to be determined experimentally or found using the formula $\frac{1}{2}\rho C_DA$ where $\rho$ is the density of air, $C_D$ is a number representing the "complex dependencies" which can be found using a table and referencing the shape of the projectile, and A is the reference/often cross-sectional area.
+_k_ is basically a fudge factor that needs to be determined experimentally or found using the formula $\frac{1}{2}\rho C_DA$ where $\rho$ is the density of air, $C_D$ is a number representing the "complex dependencies" which can be found using a table and referencing the shape of the projectile, and A is the reference/often cross-sectional area.
 
 The density of air: 1.225 kg/m^3
 
 CD:
-![Complex Dependencies Reference](/layout/static/imgs/CAD/DragCoefficientTable.png)
+![Complex Dependencies Reference](/static/imgs/CAD/DragCoefficientTable.png)
 
 Linear drag has a closed form for its equations of motion while quadratic drag does not and must be found using numerical approximations like Euler's method.
 
@@ -107,17 +106,17 @@ More information on linear drag can be found here:\
 
 Since I do not understand the math, this section will only provide how I understand the effect intuitively rather than correctly.
 
-|Spin|Trajectory|
-| ----------- | ----------- |
-|forward|downward|
-|backward|upward|
-|ccw|leftward|
-|cw|rightward|
+| Spin     | Trajectory |
+| -------- | ---------- |
+| forward  | downward   |
+| backward | upward     |
+| ccw      | leftward   |
+| cw       | rightward  |
 
 Some reference images:
 
-![Magnus Effect Static Diagram](/layout/static/imgs/CAD/MagnusEffectStationaryDiagram.png)
-![Magnus Effect Animation](/layout/static/imgs/CAD/MagnusEffectAnimatedDiagram.gif)
+![Magnus Effect Static Diagram](/static/imgs/CAD/MagnusEffectStationaryDiagram.png)
+![Magnus Effect Animation](/static/imgs/CAD/MagnusEffectAnimatedDiagram.gif)
 
 My shortcut yet likely flawed way to remembering the direction of the effect:
 

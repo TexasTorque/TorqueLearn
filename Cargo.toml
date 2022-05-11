@@ -1,14 +1,4 @@
 [package]
-name = "torquelearn"
-version = "0.1.0"
-edition = "2018"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
-glob = "0.3.0"
-markdown = "0.3.0"
-copy_dir = "0.1.2"
-rocket = "0.5.0-rc.1"
-regex = "1.5.4"
-walkdir = "2"
+name = "TorqueLearn"
+version = "0.2.1"
+build = "build.rs"

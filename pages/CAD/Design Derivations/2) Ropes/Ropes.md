@@ -20,23 +20,23 @@ At Torque, we often use Dyneema rope which is comparable to Spectra cord both of
 
 7x7 Strand Stainless Steel Cable Tensile Strength
 
-|Diameter (in)|Tensile Strength (lbf)|
-| ----------- | ----------- |
-|3/64|270|
-|1/16|480|
-|3/32|920|
-|1/8|1700|
-|5/32|2400|
-|3/16|3700|
-|1/4|6100|
+| Diameter (in) | Tensile Strength (lbf) |
+| ------------- | ---------------------- |
+| 3/64          | 270                    |
+| 1/16          | 480                    |
+| 3/32          | 920                    |
+| 1/8           | 1700                   |
+| 5/32          | 2400                   |
+| 3/16          | 3700                   |
+| 1/4           | 6100                   |
 
 12 Strand Spectra Tensile Strength
 
-|Diameter (in)|Tensile Strength (lbf)|
-| ----------- | ----------- |
-|1/8|1800|
-|3/16|3600|
-|1/4|6000|
+| Diameter (in) | Tensile Strength (lbf) |
+| ------------- | ---------------------- |
+| 1/8           | 1800                   |
+| 3/16          | 3600                   |
+| 1/4           | 6000                   |
 
 $\text{Tensile Strength}=F_{tu}$
 
@@ -52,6 +52,7 @@ Despite the fiber's impressive tensile strength, it is susceptible to stretching
 ### Capstan Equation
 
 **Relevance:** The Euler-Eytelwein Equation aka. the Capstan Equation relates the tension of two sides of a rope wrapped around a tube. This had potential uses in Steamworks when robots needed to climb a rope and has uses on elevators and winches.
+
 
 Its derivation is quite elegant and can be found here: <https://www.youtube.com/watch?v=hsbNusf2N8Y>
 
@@ -69,6 +70,8 @@ The number of wraps **exponentially** increases the amount of load an input forc
 
 To understand how a rope will wrap around a pipe, this section will take a kinematic approach rather than a dynamic one as the differential equations become unwieldy.
 
+Let's start off with the parametric equation of a circle as we know that the pipe has a circular shape of radius _r_.
+
 Let's start off with the parametric equation of a circle as we know that the pipe has a circular shape of radius *r*.
 $$x=rcos(t),\;\;y=rsin(t)$$
 
@@ -76,18 +79,20 @@ As a vector, this is:
 $$[rcos(t),\;rsin(t)]$$
 
 To bring our rope into 3D space, we need to define the z component which for now we can define as some function *z(t)*. Let's call our postion function *R(t)*.
+
 $$R(t)=[rcos(t),\;rsin(t),\;z(t)]$$
 
-**Let: z(t)=t*
+\*_Let: z(t)=t_
 
 From geometry, we know that there are 360 degrees or 2$\pi$ radians in a circle. Thus, on the interval $t=[0, 2\pi)$ *R(t)* makes one full circle. If $z(t)=t,$ then the rope will travel $2\pi$ units per wrap which is known as pitch *p*.
+
 $$p=2\pi\frac{z(t)}{t}$$
 
-![Helix Diagram](/layout/static/imgs/CAD/HelixDiagram.jpg)
+![Helix Diagram](/static/imgs/CAD/HelixDiagram.jpg)
 
-So far, we have a helix but we still need to find a relation between *R(t)* and the fleet angle.
+So far, we have a helix but we still need to find a relation between _R(t)_ and the fleet angle.
 
-![Fleet Angle Diagram](/layout/static/imgs/CAD/FleetAngleDiagram.png)
+![Fleet Angle Diagram](/static/imgs/CAD/FleetAngleDiagram.png)
 
 Using trigonometry, we can write:
 $$\tan\theta=\frac{pitch}{2*diameter}$$
@@ -95,6 +100,7 @@ $$\tan\theta=\frac{pitch}{2*diameter}$$
 Note: the "2" is because the rope spans one diameter on the front side plus an additional diameter on the backside.
 
 Solving for *pitch*:
+
 $$p=\tan(\theta)(2*diameter)$$
 $$p=4r\tan(\theta)$$
 

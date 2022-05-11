@@ -4,6 +4,7 @@
 
 Elevators are an essential part of any FRC toolkit. They facilitate moving game pieces vertically over a large range of motion. If designed to do so, elevators can also act as climbers to help lift the robot up.
 
+
 ## Concepts
 
 [Relative Motion](#relative-motion)\
@@ -15,7 +16,7 @@ Elevators are an essential part of any FRC toolkit. They facilitate moving game 
 
 Elevators generally come in two styles of rigging: continuous and cascaded.
 
-![Elevator Rigging Diagram](/layout/static/imgs/CAD/ElevatorRiggingDiagram.jpg)
+![Elevator Rigging Diagram](/static/imgs/CAD/ElevatorRiggingDiagram.jpg)
 
 Both can be powered up and down although it may useful to just let gravity or a spring return the elevator. Continuous elevators spool sting on the up run (the motion as the elevator moves up) and the down run (the motion as the elevator moves down) at the same rate. Cascades don't. The spool for an up run may need to spin at different rate compared to the down run or have a different diameter. Cascades are typically faster than a continuous but they also require more torque. Cascades are made by connecting each stage with a separate piece of string while continuous uses one long piece.
 
@@ -27,7 +28,7 @@ Both can be powered up and down although it may useful to just let gravity or a 
 
 **Cascade:**
 
-![Cascade Elevator Diagram](/layout/static/imgs/CAD/CascadeElevatorDiagram.png)
+![Cascade Elevator Diagram](/static/imgs/CAD/CascadeElevatorDiagram.png)
 
 In the image above the numbers refer to "objects." Object 0 is the force generator: a weight, a gearbox, etc. Objects 1 through 3 are elevator frames and object 4 is the carriage. A three stage elevator is depicted as there are three moving stages.
 
@@ -45,8 +46,8 @@ First let's find F assuming static equilibrium.
 
 Generalizing this to n stages we get:
 
-| Equation | Comment |
-| ----------- | ----------- |
+| Equation                             | Comment                           |
+| ------------------------------------ | --------------------------------- |
 | $F=W_2+2W_3+4W_4+...+2^{n-1}W_{n+1}$ | Nesting multiplicative 2s = power |
 
 Assuming the elevator is accelerating and not in dynamic equilibrium, find an equation for the acceleration of the final stage in terms of the acceleration of object 0 and other variables.
@@ -60,16 +61,16 @@ Assuming the elevator is accelerating and not in dynamic equilibrium, find an eq
 | $\Delta y_2 = -\Delta y_0$ | Same string/pulley mechanic |
 | $-\frac{\Delta y_0}{L_1}$ | % of stage traveled; $\Delta y_0$ is negative |
 | $h=(\frac{\Delta y_0}{L_1})L_1+(\frac{\Delta y_0}{L_1})L_2+(\frac{\Delta y_0}{L_1})L_3$ | Height from base of Object 1 to base of Object 4 |
-| $h=(\frac{\Delta y_0}{L_1})(L_1+L_2+L_3)$ | Factoring |
-| $h=(\frac{L_1+L_2+L_3}{L_1})(-\Delta y_0)$ | Rearranging |
-| $h'=v_4=(\frac{L_1+L_2+L_3}{L_1})(-v_0)$ | Derivative wrt. time |
-| $v'_4=a_4=(\frac{L_1+L_2+L_3}{L_1})(-a_0)$ | Derivative wrt. time |
+| $h=(\frac{\Delta y_0}{L_1})(L_1+L_2+L_3)$                                               | Factoring                                        |
+| $h=(\frac{L_1+L_2+L_3}{L_1})(-\Delta y_0)$                                              | Rearranging                                      |
+| $h'=v_4=(\frac{L_1+L_2+L_3}{L_1})(-v_0)$                                                | Derivative wrt. time                             |
+| $v'_4=a_4=(\frac{L_1+L_2+L_3}{L_1})(-a_0)$                                              | Derivative wrt. time                             |
 
 Generalizing for n stages:
 
-| Equation | Comment |
-| ----------- | ----------- |
-| $a_{n+1}=(\frac{L_1+L_2+L_3+...+L_n}{L_1})(-a_0)$ |  |
+| Equation                                          | Comment |
+| ------------------------------------------------- | ------- |
+| $a_{n+1}=(\frac{L_1+L_2+L_3+...+L_n}{L_1})(-a_0)$ |         |
 
 If object 0 was replaced by a winch, find the Torque needed to move the elevator in terms of $a_4$ and other variables. Assume the winch has a constant spool radius $r$.
 
@@ -94,9 +95,7 @@ If object 0 was replaced by a winch, find the Torque needed to move the elevator
 
 Generalizing for n stages:
 
-| Equation | Comment |
-| ----------- | ----------- |
-| $\tau=m_2r(a_{n+1}(\frac{L_1}{L_1+L_2+...+L_n})+g)+2m_3r(a_{n+1}(\frac{L_1+L_2}{L_1+L_2+...+L_n})+g)+...+2^{n-1}m_{n+1}r(a_{n+1}(\frac{L_1+L_2+...+L_m}{L_1+L_2+...+L_n})+g)$ |  |
+$\tau=m_2r(a_{n+1}(\frac{L_1}{L_1+L_2+...+L_n})+g)+2m_3r(a_{n+1}(\frac{L_1+L_2}{L_1+L_2+...+L_n})+g)+...+2^{n-1}m_{n+1}r(a_{n+1}(\frac{L_1+L_2+...+L_m}{L_1+L_2+...+L_n})+g)$
 
 ## Credits
 

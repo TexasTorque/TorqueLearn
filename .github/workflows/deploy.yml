@@ -8,24 +8,70 @@ on:
 
 jobs:
 
-  deploy:
+  changes:
     runs-on: self-hosted
-
+    
+    outputs:
+      paths: ${{ steps.filter.outputs.deploy}}
+      cache: ${{steps.binary.outputs.cache-hit}}
+  
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
-      
+
+      - name: Check if build binary is cached
+        id: binary
+        uses: actions/cache@v2
+        with:
+          path: torquelearn
+          key: ${{ runner.os }}-torquelearn-bin
+
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            deploy:
+              - 'src/**'
+              - 'server/**'
+              - 'wasm/**'
+              - 'Rocket.toml'
+              - 'Cargo.toml'
+
+  deploy:
+    needs: changes
+#     if: |
+#       needs.changes.outputs.deploy == 'true' ||
+#       needs.changes.outputs.cache != 'true'
+    runs-on: self-hosted
+    steps:
       - name: Install latest nightly
         uses: actions-rs/toolchain@v1
         with:
             toolchain: nightly
             override: true
 
+#       - name: Install wasm-pack
+#         run: cargo install wasm-pack --version 0.10.1
+
       - name: Cache built rust dependencies
         uses: Swatinem/rust-cache@v1
 
       - name: Build the server
-        run: cargo build --release
+        run: sh build.sh
       
+      - name: Cache binary
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: torquelearn
+          key: ${{ runner.os }}-torquelearn-bin
+
+      
+  restart:
+    if: always()
+    needs: [changes, deploy]
+    runs-on: self-hosted
+    
+    steps:
       - name: Restart server
         run: sudo systemctl restart torquelearn
