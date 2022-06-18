@@ -39,9 +39,9 @@ jobs:
 
   deploy:
     needs: changes
-    if: |
-      needs.changes.outputs.deploy == 'true' ||
-      needs.changes.outputs.cache != 'true'
+#     if: |
+#       needs.changes.outputs.deploy == 'true' ||
+#       needs.changes.outputs.cache != 'true'
     runs-on: self-hosted
     steps:
       - name: Install latest nightly
@@ -50,8 +50,8 @@ jobs:
             toolchain: nightly
             override: true
 
-      - name: Install wasm-pack
-        run: cargo install wasm-pack --version 0.10.1
+#       - name: Install wasm-pack
+#         run: cargo install wasm-pack --version 0.10.1
 
       - name: Cache built rust dependencies
         uses: Swatinem/rust-cache@v1
