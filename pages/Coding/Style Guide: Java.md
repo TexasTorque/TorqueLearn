@@ -200,7 +200,7 @@ These names are typically nouns or noun phrases.
 
 Non-constant field names (static or otherwise) are written in lowerCamelCase.
 
-These names are typically nouns or noun phrases. For example, computedValues or index.
+These names are typically nouns or noun phrases. For example, `computedValues` or `index`.
 
 ### Parameter names
 
@@ -218,8 +218,8 @@ Even when final and immutable, local variables are not considered to be constant
 
 Each type variable is named in one of two styles:
 
-A single capital letter, optionally followed by a single numeral (such as T, E, X, T2).
-A name in the form used for classes (see Section 5.2.2, Class names), followed by the capital letter T (examples: RequestT, FooBarT).
+A single capital letter, optionally followed by a single numeral (such as `T`, `E`, `X`, `T2`).
+A name in the form used for classes (see Section 5.2.2, Class names), followed by the capital letter `T` (examples: `RequestT`, `FooBarT`).
 
 ## Programming Practices
 
